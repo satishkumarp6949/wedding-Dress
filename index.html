@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumina Bridal Couture</title>
+
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --bg:#0e0f12;
+      --card:#14161b;
+      --muted:#9aa4b2;
+      --accent:#ffd7e1; /* blush */
+      --accent-2:#d9b8ff; /* lilac */
+      --text:#eef0f5;
+      --glass:rgba(255,255,255,.06);
+      --grad: conic-gradient(from 160deg at 40% 30%, #ffd7e1, #e7f0ff, #e7ddff, #ffd7e1);
+    }
+    html,body{height:100%; background:radial-gradient(1200px 800px at 10% -10%, #1f2230 0%, transparent 60%),
+                                    radial-gradient(1000px 700px at 110% 10%, #291f30 0%, transparent 55%),
+                                    var(--bg);
+      color:var(--text); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;}
+
+    /* floating grain */
+    body::before{content:""; position:fixed; inset:0; pointer-events:none; opacity:.08; background-image:url('https://grainy-gradients.vercel.app/noise.svg'); mix-blend-mode:soft-light;}
+
+    /* NAV */
+    .navbar{background:linear-gradient(180deg, rgba(10,10,13,.85), rgba(10,10,13,.35)); backdrop-filter: blur(10px);} 
+    .brand{font-family:'Playfair Display', serif; letter-spacing:.5px;}
+
+    /* HERO */
+    .hero{position:relative; min-height:92vh; display:grid; place-items:center; overflow:hidden;}
+    .hero .bg{position:absolute; inset:0; background:radial-gradient(60% 60% at 70% 40%, rgba(255,215,225,.25), transparent 55%),
+                                      radial-gradient(60% 60% at 20% 60%, rgba(217,184,255,.25), transparent 55%);
+    }
+    .hero .orb{position:absolute; width:820px; height:820px; border-radius:50%; filter: blur(60px); opacity:.25; background:var(--grad); top:-180px; left:-120px;}
+    .hero .orb-2{position:absolute; width:680px; height:680px; border-radius:50%; filter: blur(55px); opacity:.2; background:var(--grad); bottom:-160px; right:-140px;}
+    .hero-card{position:relative; border-radius:28px; overflow:hidden; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); box-shadow:0 30px 80px rgba(0,0,0,.45);} 
+    .hero-img{min-height:520px; background:url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1887&auto=format&fit=crop') center/cover;}
+    .glass{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 15px 40px rgba(0,0,0,.35);} 
+
+    .tag{display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .75rem; border-radius:999px; border:1px dashed rgba(255,255,255,.25); background:rgba(255,255,255,.04); font-size:.85rem; color:var(--muted)}
+
+    .btn-cta{position:relative; border:none; padding:.9rem 1.2rem; border-radius:14px; color:#0d0f13; font-weight:600; background:linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow:0 12px 30px rgba(255, 205, 236,.25);} 
+    .btn-ghost{border:1px solid rgba(255,255,255,.2); color:var(--text);}
+
+    .skew-divider{position:relative; height:120px; overflow:hidden;}
+    .skew-divider::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent, rgba(255,255,255,.06)); transform:skewY(-5deg) translateY(-40%);}   
+
+    /* SHOWCASE GRID */
+    .masonry{columns: 3 260px; column-gap: 1rem;}
+    .masonry .tile{break-inside: avoid; margin-bottom:1rem; border-radius:22px; overflow:hidden; position:relative;}
+    .masonry .tile img{width:100%; display:block;}
+    .tile .mask{position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.55)); opacity:0; transition:.35s ease;}
+    .tile:hover .mask{opacity:1}
+    .tile .label{position:absolute; bottom:10px; left:10px; right:10px; display:flex; align-items:center; justify-content:space-between;}
+
+    /* LOOKBOOK 3D tilt */
+    .tilt{transform-style:preserve-3d; transform: perspective(900px) rotateX(0) rotateY(0); transition: transform .15s ease}
+    .tilt .tilt-inner{transform: translateZ(40px);} 
+
+    /* TIMELINE */
+    .timeline{position:relative;}
+    .timeline::before{content:""; position:absolute; left:calc(50% - 2px); top:0; bottom:0; width:4px; background:linear-gradient(180deg, var(--accent), transparent 70%);} 
+    .step{position:relative;}
+    .step .dot{position:absolute; left:50%; transform:translate(-50%, -50%); top:0; width:16px; height:16px; border-radius:50%; background:var(--accent);} 
+
+    /* SWATCHES */
+    .swatch{width:46px; height:46px; border-radius:12px; border:1px solid rgba(255,255,255,.18); cursor:pointer; transition:.2s}
+    .swatch:hover{transform: translateY(-2px)}
+
+    /* Testimonials */
+    .quote{font-family:'Playfair Display', serif; font-size:1.25rem}
+
+    /* Footer */
+    .foot-links a{color:var(--muted); text-decoration:none}
+    .foot-links a:hover{color:var(--text)}
+
+    /* Back to top */
+    #toTop{position:fixed; right:18px; bottom:18px; z-index:5; display:none}
+
+    /* Scroll progress */
+    .progress-wrap{position:fixed; top:0; left:0; height:3px; width:100%; background:rgba(255,255,255,.05); z-index:9999}
+    .progress-bar{height:100%; width:0; background:linear-gradient(90deg, var(--accent), var(--accent-2));}
+
+    /* 450px media query */
+    @media (max-width:450px){
+      .display-4{font-size:2rem}
+      .lead{font-size:1rem}
+      .hero-img{min-height:380px}
+      .masonry{columns:1 260px}
+      .btn-cta{width:100%}
+      .navbar-brand{font-size:1rem}
+      .timeline::before{left:8px}
+      .step .dot{left:8px; transform:translate(-50%, -50%)}
+      .step .content{margin-left:28px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Scroll progress -->
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container py-2">
+      <a class="navbar-brand d-flex align-items-center gap-2 brand" style="color: whitesmoke;" href="index.html"><i class="bi bi-flower1"></i> Lumina Bridal</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link text-white-50" href="name.html">Collections</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="#process">Process</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link text-white-50" href="contact.html">Contact</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-sm btn-outline-light rounded-pill px-3" href="book.html">Book Fitting</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="bg"></div>
+    <div class="orb"></div>
+    <div class="orb-2"></div>
+
+    <div class="container position-relative">
+      <div class="row g-4 align-items-center hero-card p-3 p-md-4" data-aos="fade-up">
+        <div class="col-lg-6 p-3 p-md-4">
+          <span class="tag mb-3"><i class="bi bi-stars"></i> Bespoke Wedding Couture</span>
+          <h1 class="display-4 fw-semibold brand">Where the Dress Meets Destiny</h1>
+          <p class="lead text-white-50">Discover sculpted silhouettes, couture embroidery, and airy fabrics crafted for modern romantics. Handmade in our atelier, tailored to your story.</p>
+          <div class="d-flex gap-3 flex-wrap mt-3">
+            <a href="book.html" class="btn-cta">Book a Private Fitting</a>
+            <a href="name.html" class="btn btn-ghost rounded-3 px-3">Explore Collections</a>
+          </div>
+          <div class="d-flex gap-3 mt-4 align-items-center text-white-50">
+            <div><i class="bi bi-patch-check"></i> Made-to-Measure</div>
+            <div><i class="bi bi-truck"></i> Worldwide Shipping</div>
+          </div>
+        </div>
+        <div class="col-lg-6 hero-img"></div>
+      </div>
+    </div>
+    <div class="skew-divider"></div>
+  </header>
+
+  <!-- COLLECTIONS -->
+  <section id="collections" class="py-5">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-md-8" data-aos="fade-right">
+          <h2 class="brand fw-semibold">Signature Collections</h2>
+          <p class="text-white-50">From celestial sparkle to minimalist satin—fall in love with a look that feels like <em>you</em>.</p>
+        </div>
+        <div class="col-md-4 text-md-end" data-aos="fade-left">
+          <a href="book.html" class="btn btn-outline-light rounded-pill">Get Styled <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="masonry" data-aos="zoom-in-up">
+        <!-- Tile 1 -->
+        <article class="tile position-relative">
+          <img src="images/wed1.webp" alt="Minimal satin"/>
+          <div class="mask"></div>
+          <div class="label">
+            <span class="badge text-dark" style="background:var(--accent)">Minimal Luxe</span>
+            <button class="btn btn-sm btn-light rounded-pill fav" aria-label="favorite"><i class="bi bi-heart"></i></button>
+          </div>
+        </article>
+        <!-- Tile 2 -->
+        <article class="tile position-relative">
+          <img src="images/wed11.jpg" alt="Beaded couture"/>
+          <div class="mask"></div>
+          <div class="label">
+            <span class="badge text-dark" style="background:var(--accent-2)">Stardust</span>
+            <button class="btn btn-sm btn-light rounded-pill fav" aria-label="favorite"><i class="bi bi-heart"></i></button>
+          </div>
+        </article>
+        <!-- Tile 3 -->
+        <article class="tile position-relative">
+          <img src="images/wed12.jpg" alt="Lace classic"/>
+          <div class="mask"></div>
+          <div class="label">
+            <span class="badge bg-light text-dark">Lace Heirloom</span>
+            <button class="btn btn-sm btn-light rounded-pill fav" aria-label="favorite"><i class="bi bi-heart"></i></button>
+          </div>
+        </article>
+        <!-- Tile 4 -->
+        <article class="tile position-relative">
+          <img src="images/wed13.jpg" alt="Boho air"/>
+          <div class="mask"></div>
+          <div class="label">
+            <span class="badge text-dark" style="background:#c9f7ff">Aire Boho</span>
+            <button class="btn btn-sm btn-light rounded-pill fav" aria-label="favorite"><i class="bi bi-heart"></i></button>
+          </div>
+        </article>
+        <!-- Tile 5 -->
+        <article class="tile position-relative">
+          <img src="images/wed14.webp" alt="Vintage"/>
+          <div class="mask"></div>
+          <div class="label">
+            <span class="badge bg-light text-dark">Vintage Bloom</span>
+            <button class="btn btn-sm btn-light rounded-pill fav" aria-label="favorite"><i class="bi bi-heart"></i></button>
+          </div>
+        </article>
+      </div>
+
+      <div class="text-center mt-4" data-aos="fade-up">
+        <a href="#gallery" class="btn btn-outline-light rounded-pill px-4">View Full Gallery</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- PROCESS TIMELINE -->
+  <section id="process" class="py-5">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-8" data-aos="fade-up">
+          <h2 class="brand fw-semibold">Your Dress Journey</h2>
+          <p class="text-white-50">Made-to-measure in four elegant steps, typically 6–10 weeks.</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="row g-5 align-items-start">
+          <div class="col-md-6 step" data-aos="fade-right">
+            <div class="dot"></div>
+            <div class="content glass rounded-4 p-4">
+              <h5 class="mb-1">1. Private Consultation</h5>
+              <small class="text-white-50">Sip, sketch, and select fabrics with our stylist.</small>
+            </div>
+          </div>
+          <div class="col-md-6 step" data-aos="fade-left">
+            <div class="dot"></div>
+            <div class="content glass rounded-4 p-4">
+              <h5 class="mb-1">2. Measurements & Mock</h5>
+              <small class="text-white-50">We craft a muslin mock-up to perfect the fit.</small>
+            </div>
+          </div>
+          <div class="col-md-6 step" data-aos="fade-right">
+            <div class="dot"></div>
+            <div class="content glass rounded-4 p-4">
+              <h5 class="mb-1">3. Embellish & Tailor</h5>
+              <small class="text-white-50">Handwork—lace, pearls, and finishing.</small>
+            </div>
+          </div>
+          <div class="col-md-6 step" data-aos="fade-left">
+            <div class="dot"></div>
+            <div class="content glass rounded-4 p-4">
+              <h5 class="mb-1">4. Final Fitting</h5>
+              <small class="text-white-50">Aisle-ready with bustle tutorial.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY with filters -->
+  <section id="gallery" class="py-5">
+    <div class="container">
+      <div class="d-flex flex-wrap gap-2 justify-content-between align-items-end mb-3">
+        <div data-aos="fade-right">
+          <h2 class="brand fw-semibold">Gallery</h2>
+          <small class="text-white-50">Filter by style</small>
+        </div>
+        <div class="btn-group" role="group" aria-label="Filter" data-aos="fade-left">
+          <button class="btn btn-outline-light rounded-pill px-3 filter-btn active" data-filter="all">All</button>
+          <button class="btn btn-outline-light rounded-pill px-3 filter-btn" data-filter="minimal">Minimal</button>
+          <button class="btn btn-outline-light rounded-pill px-3 filter-btn" data-filter="lace">Lace</button>
+          <button class="btn btn-outline-light rounded-pill px-3 filter-btn" data-filter="beaded">Beaded</button>
+        </div>
+      </div>
+
+      <div class="row g-3" id="galleryGrid" data-aos="zoom-in-up">
+        <!-- Each card has data-tags for filtering -->
+        <div class="col-6 col-md-4 col-lg-3" data-tags="minimal">
+          <div class="card bg-transparent border-0">
+            <img class="rounded-4" src="images/wed2.webp" alt="Minimal satin"/>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3" data-tags="lace">
+          <div class="card bg-transparent border-0">
+            <img class="rounded-4" src="images/wed3.webp" alt="Lace"/>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3" data-tags="beaded">
+          <div class="card bg-transparent border-0">
+            <img class="rounded-4" src="images/wd4.webp" alt="Beaded"/>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3" data-tags="minimal lace">
+          <div class="card bg-transparent border-0">
+            <img class="rounded-4" src="images/wed5.webp" alt="Minimal Lace"/>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3" data-tags="beaded">
+          <div class="card bg-transparent border-0">
+            <img class="rounded-4" src="images/wed7.webp" alt="Beaded detail"/>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3" data-tags="lace">
+          <div class="card bg-transparent border-0">
+            <img class="rounded-4" src="images/wed9.webp" alt="Lace classic"/>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3" data-tags="minimal">
+          <div class="card bg-transparent border-0">
+            <img class="rounded-4" src="images/wed6.webp" alt="Minimal 2"/>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3" data-tags="beaded">
+          <div class="card bg-transparent border-0">
+            <img class="rounded-4" src="images/wed8.webp" alt="Beaded 2"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK / CONTACT -->
+  <section id="book" class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="p-4 glass rounded-4">
+            <h3 class="brand">Book a Private Fitting</h3>
+            <p class="text-white-50">Tell us your date and vibe—we'll prepare a curated rack just for you.</p>
+            <form class="row g-3" id="bookForm">
+              <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control bg-transparent text-white" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Phone</label>
+                <input type="tel" class="form-control bg-transparent text-white" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Wedding Date</label>
+                <input type="date" class="form-control bg-transparent text-white" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Style</label>
+                <select class="form-select bg-transparent text-white">
+                  <option class="bg-dark" value="Minimal">Minimal</option>
+                  <option class="bg-dark" value="Lace">Lace</option>
+                  <option class="bg-dark" value="Beaded">Beaded</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Notes</label>
+                <textarea class="form-control bg-transparent text-white" rows="3" placeholder="Tell us anything you'd love…"></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn-cta w-100" type="submit">Request Appointment</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-6" id="contact" data-aos="fade-left">
+          <div class="p-4 glass rounded-4 h-100">
+            <h3 class="brand">Contact</h3>
+            <div class="row g-3 text-white-50">
+              <div class="col-sm-6"><i class="bi bi-geo-alt"></i> 88, J.P.Nagar, Bangalore</div>
+              <div class="col-sm-6"><i class="bi bi-telephone"></i> +91 98765 43210</div>
+              <div class="col-sm-6"><i class="bi bi-envelope"></i> hello@luminabridal.com</div>
+              <div class="col-sm-6"><i class="bi bi-clock"></i> Tue–Sun 11am–8pm</div>
+            </div>
+            <div class="ratio ratio-21x9 mt-3 rounded-4 overflow-hidden">
+              <iframe src="https://www.google.com/maps?q=Bangalore&output=embed" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-5">
+    <div class="container">
+      <div id="testi" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up">
+        <div class="carousel-inner rounded-4 glass p-4">
+          <div class="carousel-item active">
+            <p class="quote">“The fit was flawless on the first try. I cried happy tears.”</p>
+            <small class="text-white-50">— Aishwarya & Rohan, Goa</small>
+          </div>
+          <div class="carousel-item">
+            <p class="quote">“That beaded bodice caught the sunset like stardust.”</p>
+            <small class="text-white-50">— Mia, Jaipur</small>
+          </div>
+          <div class="carousel-item">
+            <p class="quote">“The team made me feel like royalty without losing the real me.”</p>
+            <small class="text-white-50">— Sana, Pune</small>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testi" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testi" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-5 border-top border-light border-opacity-10">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h4 class="brand">Lumina Bridal</h4>
+          <p class="text-white-50">Couture wedding dresses handcrafted in India. Custom sizing, international shipping, and atelier fittings.</p>
+          <div class="d-flex gap-3">
+            <a href="#" class="text-white-50"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white-50"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white-50"><i class="bi bi-pinterest"></i></a>
+          </div>
+        </div>
+        <div class="col-md-3 foot-links">
+          <h6 class="text-uppercase text-white-50">Visit</h6>
+          <a href="book.html" class="d-block">Book Fitting</a>
+          <a href="name.html" class="d-block">Collections</a>
+          <a href="index.html#gallery" class="d-block">Gallery</a>
+        </div>
+        <div class="col-md-3 foot-links">
+          <h6 class="text-uppercase text-white-50">Policies</h6>
+          <a href="#" class="d-block">Shipping</a>
+          <a href="#" class="d-block">Returns</a>
+          <a href="#" class="d-block">Care</a>
+        </div>
+      </div>
+      <div class="text-white-50 small mt-4">© <span id="year"></span> Lumina Bridal Couture. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <button id="toTop" class="btn btn-light rounded-circle"><i class="bi bi-arrow-up"></i></button>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
+
+  <script>
+    // AOS init
+    AOS.init({ once: true, duration: 800, offset: 80});
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Progress bar
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+      progressBar.style.width = scrolled + '%';
+      // back to top
+      document.getElementById('toTop').style.display = (window.scrollY > 400) ? 'block' : 'none';
+    });
+
+    // Back to top
+    document.getElementById('toTop').addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Fav hearts toggle
+    document.querySelectorAll('.fav').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const i = btn.querySelector('i');
+        i.classList.toggle('bi-heart');
+        i.classList.toggle('bi-heart-fill');
+        btn.classList.toggle('btn-light');
+        btn.classList.toggle('btn-danger');
+      });
+    });
+
+    // Tilt effect
+    document.querySelectorAll('.tilt').forEach(card => {
+      const strength = 12;
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+        const rx = (y - rect.height/2) / rect.height * -strength;
+        const ry = (x - rect.width/2) / rect.width * strength;
+        card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      card.addEventListener('mouseleave', () => card.style.transform = 'perspective(900px) rotateX(0) rotateY(0)');
+    });
+
+    // Gallery filter
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('#galleryGrid [data-tags]');
+    filterButtons.forEach(btn => btn.addEventListener('click', () => {
+      filterButtons.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(c => {
+        const tags = c.dataset.tags.split(' ');
+        const show = f === 'all' || tags.includes(f);
+        c.style.display = show ? '' : 'none';
+      });
+    }));
+
+    // Booking form submit (demo)
+    document.getElementById('bookForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const toast = document.createElement('div');
+      toast.className = 'position-fixed bottom-0 start-50 translate-middle-x p-3';
+      toast.innerHTML = `<div class="toast align-items-center text-bg-dark border-0 show" role="alert"><div class="d-flex"><div class="toast-body">Thank you! We'll contact you shortly to confirm your fitting.</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div>`;
+      document.body.appendChild(toast);
+      setTimeout(()=> toast.remove(), 3200);
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

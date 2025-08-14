@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Your Fitting | Lumina Bridal Couture</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('images/tailoring-tailor-costume-apparel.jpg') no-repeat center center/cover;
+      color: #fff;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+    .overlay {
+      background: rgba(0,0,0,0.7);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 0;
+    }
+    .booking-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 650px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      animation: fadeIn 1.2s ease;
+    }
+    .booking-card h2 {
+      color: #f5d4b5;
+      margin-bottom: 20px;
+    }
+    .form-label {
+      font-weight: 500;
+      color: #f9e6d3;
+    }
+    .form-control, .form-select, textarea {
+      border-radius: 12px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+    }
+    .form-control::placeholder, textarea::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+    .form-select option {
+      color: #000;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #f5d4b5, #d9a86c);
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 24px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-gold:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(249, 230, 211, 0.5);
+    }
+    footer {
+      background: rgba(0,0,0,0.85);
+      padding: 15px;
+      color: #ccc;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+        footer {
+      background: rgba(0,0,0,0.85);
+      padding: 15px;
+      color: #ccc;
+    }
+    .foot-links a { color:var(--muted); text-decoration:none; }
+    .foot-links a:hover { color:var(--text); }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2 brand"style="color: whitesmoke; href="index.html"><i class="bi bi-flower1"></i> Lumina Bridal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="name.html">Collections</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+        <li class="nav-item"><a class="nav-link active" href="book.html">Book Fitting</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Booking Section -->
+<div class="overlay">
+  <div class="booking-card" data-aos="zoom-in">
+    <h2 class="text-center">Book Your Bridal Fitting</h2>
+    <p class="text-center mb-4">Reserve your private couture fitting session with our designers.</p>
+    <form>
+      <div class="mb-3">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" placeholder="Enter your name" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-control" placeholder="Enter your email" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Phone Number</label>
+        <input type="tel" class="form-control" placeholder="Enter your phone number" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Preferred Date</label>
+        <input type="date" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Preferred Time</label>
+        <select class="form-select" required>
+          <option value="">Select a time slot</option>
+          <option>10:00 AM - 11:00 AM</option>
+          <option>11:30 AM - 12:30 PM</option>
+          <option>2:00 PM - 3:00 PM</option>
+          <option>3:30 PM - 4:30 PM</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Fitting Type</label>
+        <select class="form-select" required>
+          <option value="">Select fitting type</option>
+          <option>Bridal Gown</option>
+          <option>Bridesmaid Dress</option>
+          <option>Evening Gown</option>
+          <option>Custom Design Consultation</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Special Requests</label>
+        <textarea class="form-control" rows="3" placeholder="Any specific requests or notes?"></textarea>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn-gold">Book Appointment</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="py-5 border-top border-light border-opacity-10">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <h4 class="brand">Lumina Bridal</h4>
+        <p class="text-white-50">Couture wedding dresses handcrafted in India. Custom sizing, international shipping, and atelier fittings.</p>
+      </div>
+      <div class="col-md-3 foot-links">
+        <h6 class="text-uppercase text-white-50">Visit</h6>
+        <a href="book.html" class="d-block">Book Fitting</a>
+        <a href="name.html" class="d-block">Collections</a>
+        <a href="index.html#gallery" class="d-block">Gallery</a>
+      </div>
+      <div class="col-md-3 foot-links">
+        <h6 class="text-uppercase text-white-50">Policies</h6>
+        <a href="#" class="d-block">Shipping</a>
+        <a href="#" class="d-block">Returns</a>
+        <a href="#" class="d-block">Care</a>
+      </div>
+    </div>
+    <div class="text-white-50 small mt-4">© <span id="year"></span> Lumina Bridal Couture. All rights reserved.</div>
+  </div>
+</footer>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>

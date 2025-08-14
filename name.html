@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collections - Lumina Bridal Couture</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --bg:#0e0f12;
+      --card:#14161b;
+      --muted:#9aa4b2;
+      --accent:#ffd7e1;
+      --accent-2:#d9b8ff;
+      --text:#eef0f5;
+      --glass:rgba(255,255,255,.06);
+      --grad: conic-gradient(from 160deg at 40% 30%, #ffd7e1, #e7f0ff, #e7ddff, #ffd7e1);
+    }
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:Poppins, sans-serif;
+    }
+    .navbar{
+      background:linear-gradient(180deg, rgba(10,10,13,.85), rgba(10,10,13,.35));
+      backdrop-filter: blur(10px);
+    }
+    .brand{font-family:'Playfair Display', serif;}
+    .hero{
+      min-height:50vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero .bg-shape{
+      position:absolute;
+      width:600px;
+      height:600px;
+      background:var(--grad);
+      filter:blur(70px);
+      opacity:.2;
+      top:-150px; left:-100px;
+      border-radius:50%;
+    }
+    .masonry{
+      columns:3 260px;
+      column-gap:1rem;
+    }
+    
+    /* Masonry Layout */
+    .masonry {
+      column-count: 3;
+      column-gap: 1.5rem;
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .masonry-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    .masonry-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .masonry-content {
+      padding: 1rem;
+      text-align: center;
+    }
+    .masonry-content h5 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    .masonry-content p {
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .tile{
+      break-inside:avoid;
+      margin-bottom:1rem;
+      border-radius:20px;
+      overflow:hidden;
+      position:relative;
+    }
+    .tile img{width:100%; display:block;}
+    .tile .mask{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.6));
+      opacity:0;
+      transition:.3s ease;
+    }
+    .tile:hover .mask{opacity:1;}
+    .label{
+      position:absolute;
+      bottom:10px;
+      left:10px;
+      right:10px;
+      display:flex;
+      justify-content:space-between;
+    }
+    .glass{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:20px;
+      padding:1.5rem;
+    }
+    .foot-links a{color:var(--muted); text-decoration:none;}
+    .foot-links a:hover{color:var(--text);}
+    @media(max-width:450px){
+      .masonry{columns:1 260px;}
+      .display-4{font-size:2rem;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container py-2">
+    <a class="navbar-brand d-flex align-items-center gap-2 brand "style="color: whitesmoke; href="index.html"><i class="bi bi-flower1"></i> Lumina Bridal</a>
+    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link text-white-50" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white-50" href="name.html">Collections</a></li>
+        <li class="nav-item"><a class="nav-link text-white-50" href="about.html">About us</a></li>
+        <li class="nav-item"><a class="nav-link text-white-50" href="contact.html">Contact us</a></li>
+        <li class="nav-item"><a class="nav-link text-white-50" href="book.html">Book fitting</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="bg-shape"></div>
+  <div class="container text-center position-relative" data-aos="fade-up">
+    <h1 class="display-4 brand fw-semibold">Our Signature Collections</h1>
+    <p class="text-white-50">Each gown is a chapter of your love story.</p>
+  </div>
+</section>
+
+<!-- Filter Buttons -->
+<div class="container my-4" data-aos="fade-up">
+  <div class="btn-group flex-wrap" role="group">
+    <button class="btn btn-outline-light rounded-pill px-3 filter-btn active" data-filter="all">All</button>
+    <button class="btn btn-outline-light rounded-pill px-3 filter-btn" data-filter="minimal">Minimal</button>
+    <button class="btn btn-outline-light rounded-pill px-3 filter-btn" data-filter="lace">Lace</button>
+    <button class="btn btn-outline-light rounded-pill px-3 filter-btn" data-filter="beaded">Beaded</button>
+  </div>
+</div>
+
+<!-- Masonry Grid -->
+<!-- Masonry Collection -->
+<section class="py-5">
+  <div class="container">
+    <div class="masonry">
+      <div class="masonry-item" data-aos="fade-up">
+        <img src="images/wed15.jpg" alt="Dress 1">
+        <div class="masonry-content">
+          <h5>Ethereal Grace</h5>
+          <p>Flowing silhouettes with delicate lace.</p>
+        </div>
+      </div>
+      <div class="masonry-item" data-aos="fade-up">
+        <img src="images/wed16.jpg" alt="Dress 2">
+        <div class="masonry-content">
+          <h5>Timeless Charm</h5>
+          <p>Classic ball gown for the modern bride.</p>
+        </div>
+      </div>
+      <div class="masonry-item" data-aos="fade-up">
+        <img src="images/wed17.webp" alt="Dress 3">
+        <div class="masonry-content">
+          <h5>Golden Hour</h5>
+          <p>Soft tulle with hand-sewn embroidery.</p>
+        </div>
+      </div>
+      <div class="masonry-item" data-aos="fade-up">
+        <img src="images/wed18.webp" alt="Dress 4">
+        <div class="masonry-content">
+          <h5>Modern Muse</h5>
+          <p>Minimalist lines with couture details.</p>
+        </div>
+      </div>
+        <div class="masonry-item" data-aos="fade-up">
+        <img src="images/wed20.webp" alt="Dress 4">
+        <div class="masonry-content">
+          <h5>Modern Muse</h5>
+          <p>Extraordinary work with antique details.</p>
+        </div>
+      </div>
+      <div class="masonry-item" data-aos="fade-up">
+        <img src="images/wed19.webp" alt="Dress 5">
+        <div class="masonry-content">
+          <h5>Whispering Veil</h5>
+          <p>Sheer elegance in every stitch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Call to Action -->
+<section class="py-5">
+  <div class="container text-center" data-aos="fade-up">
+    <div class="glass">
+      <h3 class="brand">Ready to Find "The One"?</h3>
+      <p class="text-white-50">Book your private fitting and experience our collections in person.</p>
+      <a href="book.html" class="btn btn-cta btn-light rounded-pill px-4">Book a Fitting</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5 border-top border-light border-opacity-10">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <h4 class="brand">Lumina Bridal</h4>
+        <p class="text-white-50">Couture wedding dresses handcrafted in India. Custom sizing, international shipping, and atelier fittings.</p>
+      </div>
+      <div class="col-md-3 foot-links">
+        <h6 class="text-uppercase text-white-50">Visit</h6>
+        <a href="book.html" class="d-block">Book Fitting</a>
+        <a href="name.html" class="d-block">Collections</a>
+        <a href="index.html#gallery" class="d-block">Gallery</a>
+      </div>
+      <div class="col-md-3 foot-links">
+        <h6 class="text-uppercase text-white-50">Policies</h6>
+        <a href="#" class="d-block">Shipping</a>
+        <a href="#" class="d-block">Returns</a>
+        <a href="#" class="d-block">Care</a>
+      </div>
+    </div>
+    <div class="text-white-50 small mt-4">© <span id="year"></span> Lumina Bridal Couture. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
+<script>
+AOS.init({ once:true, duration:800, offset:80 });
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Filter
+const filterButtons = document.querySelectorAll('.filter-btn');
+const tiles = document.querySelectorAll('#collectionGrid .tile');
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterButtons.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    tiles.forEach(tile => {
+      const tags = tile.dataset.tags.split(' ');
+      tile.style.display = (filter === 'all' || tags.includes(filter)) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>
